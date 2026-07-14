@@ -1,0 +1,6 @@
+{
+  "name": "Orphik Creative Studio",
+  "description": "A high-end futuristic digital agency (Orphik) with glassmorphic visuals, immersive parallax, and premium portfolio showcases.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
