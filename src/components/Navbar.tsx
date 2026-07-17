@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import OrphikLogo from './OrphikLogo';
+import orphikLogo from '../assets/images/orphik_logo_1784264317690.jpg';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -37,8 +37,8 @@ export default function Navbar() {
       id="navbar"
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'py-4 bg-brand-navy/80 backdrop-blur-md border-b border-white/8 shadow-lg shadow-black/20'
-          : 'py-6 bg-transparent border-b border-transparent'
+          ? 'py-5 bg-brand-navy/85 backdrop-blur-lg border-b border-white/8 shadow-lg shadow-black/25'
+          : 'py-10 bg-transparent border-b border-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
@@ -46,46 +46,56 @@ export default function Navbar() {
         <a
           href="#"
           onClick={(e) => handleLinkClick(e, 'hero')}
-          className="flex items-center space-x-3 group focus:outline-none"
+          className="flex items-center space-x-4 group focus:outline-none"
           id="nav-logo"
         >
-          <OrphikLogo className="h-6 w-auto text-brand-cyan group-hover:brightness-110 transition-all duration-300" />
+          {/* Note: If you want to restore the dashed empty placeholder, swap the code below with:
+              <div className="w-[150px] h-[60px] bg-white/5 border border-dashed border-white/20 rounded-lg flex items-center justify-center text-[10px] tracking-widest text-slate-500 font-mono">
+                [LOGO]
+              </div>
+          */}
+          <img
+            src={orphikLogo}
+            alt="Orphik Logo"
+            className="w-[150px] h-[60px] object-contain mix-blend-screen group-hover:scale-105 transition-all duration-300"
+            referrerPolicy="no-referrer"
+          />
         </a>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden md:flex items-center space-x-8">
+        <div className="hidden md:flex items-center space-x-12">
           <a
             href="#services"
             onClick={(e) => handleLinkClick(e, 'services')}
-            className="font-sans text-sm text-slate-300 hover:text-white hover:shadow-[0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 py-1"
+            className="font-sans text-base lg:text-lg font-medium text-slate-300 hover:text-brand-cyan hover:scale-105 hover:shadow-[0_2px_0_rgba(203,232,44,0.8)] transition-all duration-300 py-1"
           >
             Services
           </a>
           <a
             href="#portfolio"
             onClick={(e) => handleLinkClick(e, 'portfolio')}
-            className="font-sans text-sm text-slate-300 hover:text-white hover:shadow-[0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 py-1"
+            className="font-sans text-base lg:text-lg font-medium text-slate-300 hover:text-brand-cyan hover:scale-105 hover:shadow-[0_2px_0_rgba(203,232,44,0.8)] transition-all duration-300 py-1"
           >
             Portfolio
           </a>
           <a
             href="#why-choose-us"
             onClick={(e) => handleLinkClick(e, 'why-choose-us')}
-            className="font-sans text-sm text-slate-300 hover:text-white hover:shadow-[0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 py-1"
+            className="font-sans text-base lg:text-lg font-medium text-slate-300 hover:text-brand-cyan hover:scale-105 hover:shadow-[0_2px_0_rgba(203,232,44,0.8)] transition-all duration-300 py-1"
           >
             Why Us
           </a>
           <a
             href="#process"
             onClick={(e) => handleLinkClick(e, 'process')}
-            className="font-sans text-sm text-slate-300 hover:text-white hover:shadow-[0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 py-1"
+            className="font-sans text-base lg:text-lg font-medium text-slate-300 hover:text-brand-cyan hover:scale-105 hover:shadow-[0_2px_0_rgba(203,232,44,0.8)] transition-all duration-300 py-1"
           >
             Process
           </a>
           <a
             href="#contact"
             onClick={(e) => handleLinkClick(e, 'contact')}
-            className="font-sans text-sm text-slate-300 hover:text-white hover:shadow-[0_1px_0_rgba(255,255,255,0.4)] transition-all duration-300 py-1"
+            className="font-sans text-base lg:text-lg font-medium text-slate-300 hover:text-brand-cyan hover:scale-105 hover:shadow-[0_2px_0_rgba(203,232,44,0.8)] transition-all duration-300 py-1"
           >
             Contact
           </a>
@@ -96,12 +106,12 @@ export default function Navbar() {
           <a
             href="#contact"
             onClick={(e) => handleLinkClick(e, 'contact')}
-            className="relative inline-flex items-center justify-center px-6 py-2.5 rounded-full overflow-hidden font-display text-sm font-semibold tracking-wide text-white group focus:outline-none"
+            className="relative inline-flex items-center justify-center px-8 py-3.5 rounded-full overflow-hidden font-display text-base font-bold tracking-wide text-white group focus:outline-none shadow-lg shadow-brand-cyan/10"
             id="nav-cta"
           >
             <div className="absolute inset-0 bg-white/5 border border-white/10 group-hover:border-brand-cyan/30 rounded-full transition-all duration-300" />
             <div className="absolute inset-0 bg-gradient-to-r from-brand-cyan/20 to-brand-purple/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <span className="relative z-10 flex items-center space-x-1">
+            <span className="relative z-10 flex items-center space-x-1.5">
               <span>Start Your Project</span>
               <span className="text-brand-cyan group-hover:translate-x-1 transition-transform duration-300">→</span>
             </span>
@@ -121,7 +131,9 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden fixed inset-x-0 top-[76px] glass-panel border-b border-white/10 transition-all duration-300 origin-top overflow-hidden z-40 ${
+        className={`md:hidden fixed inset-x-0 ${
+          isScrolled ? 'top-[92px]' : 'top-[112px]'
+        } glass-panel border-b border-white/10 transition-all duration-300 origin-top overflow-hidden z-40 ${
           isMobileMenuOpen ? 'max-h-screen py-6 opacity-100' : 'max-h-0 py-0 opacity-0 pointer-events-none'
         }`}
       >
