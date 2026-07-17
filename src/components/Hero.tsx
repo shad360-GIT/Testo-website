@@ -88,11 +88,11 @@ export default function Hero() {
             {/* Primary CTA */}
             <button
               onClick={() => handleScrollTo('portfolio')}
-              className="relative inline-flex items-center justify-center px-8 py-4 rounded-xl overflow-hidden font-display font-semibold tracking-wide text-white group focus:outline-none cursor-pointer"
+              className="relative inline-flex items-center justify-center px-8 py-4 rounded-xl overflow-hidden font-display font-semibold tracking-wide text-brand-navy group focus:outline-none cursor-pointer"
               id="hero-primary-cta"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-xl transition-transform duration-500 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-brand-cyan rounded-xl transition-transform duration-500 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10 flex items-center space-x-2">
                 <span>View Portfolio</span>
                 <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
