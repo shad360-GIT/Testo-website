@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import orphikLogo from '../assets/images/orphik_logo_1784264317690.jpg';
+import orphikLogo from '../assets/images/regenerated_image_1784265224398.png';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
