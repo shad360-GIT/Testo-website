@@ -45,7 +45,11 @@ export default function Services() {
   };
 
   return (
-    <section id="services" className="relative z-10 py-24 md:py-32 bg-brand-navy overflow-hidden">
+    <section
+      id="services"
+      className="relative z-10 bg-brand-navy overflow-hidden"
+      style={{ paddingTop: '60px', paddingBottom: '128px' }}
+    >
       {/* Decorative gradient light */}
       <div className="absolute top-1/2 right-0 w-[500px] h-[500px] rounded-full bg-brand-cyan/5 blur-[120px] pointer-events-none" />
 

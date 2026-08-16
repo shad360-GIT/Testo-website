@@ -88,8 +88,8 @@ export default function App() {
       {/* Structured Sections layout */}
       <Navbar />
       <Hero />
-      <TrustedBy />
       <Services />
+      <TrustedBy />
       <Portfolio />
       <WhyChooseUs />
       <Testimonials />
