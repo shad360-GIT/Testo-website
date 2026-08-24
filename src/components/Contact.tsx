@@ -60,7 +60,7 @@ export default function Contact() {
                 Let&apos;s <span className="font-serif italic font-normal text-gradient-cyan-purple">Create Together</span><span className="text-brand-cyan">.</span>
               </h2>
               <p className="font-sans text-slate-400 text-sm sm:text-base font-light leading-relaxed">
-                Have an ambitious challenge or a design concept ready to deploy? Fill out our custom project inquiry. Our lead designers respond within 12 hours.
+                Have an ambitious challenge or a design concept ready to deploy? Fill out our custom project inquiry. Our lead designers respond within 24 hours.
               </p>
             </div>
 
@@ -74,10 +74,10 @@ export default function Contact() {
                 <div>
                   <span className="font-mono text-[10px] text-slate-500 uppercase tracking-widest block">EMAIL US</span>
                   <a
-                    href="mailto:hello@auracreative.studio"
+                    href="mailto:admin@orphik.com"
                     className="font-sans text-sm sm:text-base text-slate-200 hover:text-white hover:underline transition-all mt-0.5 inline-block"
                   >
-                    hello@auracreative.studio
+                    admin@orphik.com
                   </a>
                 </div>
               </div>
@@ -90,10 +90,10 @@ export default function Contact() {
                 <div>
                   <span className="font-mono text-[10px] text-slate-500 uppercase tracking-widest block">CALL US</span>
                   <a
-                    href="tel:+18005552872"
+                    href="tel:9176996309"
                     className="font-sans text-sm sm:text-base text-slate-200 hover:text-white hover:underline transition-all mt-0.5 inline-block"
                   >
-                    +1 (800) 555-AURA
+                    917.699.6309
                   </a>
                 </div>
               </div>
@@ -106,7 +106,7 @@ export default function Contact() {
                 <div>
                   <span className="font-mono text-[10px] text-slate-500 uppercase tracking-widest block">VISIT STUDIO</span>
                   <p className="font-sans text-sm sm:text-base text-slate-200 mt-0.5 leading-relaxed">
-                    64 Mercer St, Soho, New York, NY 10012
+                    288 Portage Avenue, SI, NY 10314
                   </p>
                 </div>
               </div>
