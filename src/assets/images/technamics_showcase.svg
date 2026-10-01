@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 647" width="100%" height="100%">
+  <defs>
+    <style>
+      .brand-title {
+        font-family: 'Space Grotesk', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 600;
+        font-size: 35px;
+        fill: #ffffff;
+        letter-spacing: 2.8px;
+      }
+      .eyebrow {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        font-size: 21px;
+        fill: #1d8cf8;
+        letter-spacing: -0.2px;
+      }
+      .headline {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 79px;
+        fill: #ffffff;
+        letter-spacing: -1.8px;
+      }
+      .subheadline {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 20.5px;
+        fill: #f1f5f9;
+        letter-spacing: -0.1px;
+      }
+      .btn-label {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        font-size: 26.5px;
+        fill: #ffffff;
+        letter-spacing: -0.2px;
+      }
+    </style>
+  </defs>
+
+  <!-- Main Black Background -->
+  <rect x="0" y="0" width="1150" height="647" fill="#000000" />
+
+  <!-- Top Blue Header Bar -->
+  <rect x="0" y="0" width="1150" height="106" fill="#23459c" />
+  <line x1="0" y1="106.5" x2="1150" y2="106.5" stroke="#162d66" stroke-width="1" />
+
+  <!-- Technamics Circular Emblem Logo -->
+  <g transform="translate(52, 53)">
+    <!-- Outer Double/Glowing Light-Blue Ring -->
+    <circle cx="0" cy="0" r="41" fill="#1e3f91" stroke="#7ec3fa" stroke-width="2.5" />
+    <circle cx="0" cy="0" r="38" fill="none" stroke="#4c89d6" stroke-width="1" opacity="0.6" />
+
+    <!-- Stylized Triple-Line 'T' Inside Circle -->
+    <!-- Top 3 Horizontal Bars -->
+    <line x1="-20" y1="-18" x2="20" y2="-18" stroke="#85c8ff" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="-20" y1="-13.5" x2="20" y2="-13.5" stroke="#85c8ff" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="-20" y1="-9" x2="20" y2="-9" stroke="#85c8ff" stroke-width="2.2" stroke-linecap="round" />
+
+    <!-- Vertical 3 Stems -->
+    <line x1="-4.5" y1="-9" x2="-4.5" y2="25" stroke="#85c8ff" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="0" y1="-9" x2="0" y2="25" stroke="#85c8ff" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="4.5" y1="-9" x2="4.5" y2="25" stroke="#85c8ff" stroke-width="2.2" stroke-linecap="round" />
+  </g>
+
+  <!-- TECHNAMICS Wordmark -->
+  <text x="115" y="65" class="brand-title">TECHNAMICS</text>
+
+  <!-- Hero Content Area -->
+  <!-- Eyebrow -->
+  <text x="179" y="176" class="eyebrow">AI-First Consulting. Engineering Excellence. Business Impact.</text>
+
+  <!-- Main 2-Line Headline -->
+  <text x="179" y="274" class="headline">Empowering Intelligent</text>
+  <text x="179" y="385" class="headline">Enterprises</text>
+
+  <!-- Subheadline Paragraph -->
+  <text x="179" y="437" class="subheadline">Harness Artificial Intelligence, trusted data, modern engineering, and exceptional talent to</text>
+  <text x="179" y="466" class="subheadline">solve complex business challenges, accelerate innovation, and create lasting business value.</text>
+
+  <!-- Orange CTA Button -->
+  <g transform="translate(179, 532)">
+    <rect x="0" y="0" width="428" height="67" rx="8" fill="#c85a17" />
+    <!-- Checkmark Circle Icon -->
+    <g transform="translate(47, 33.5)">
+      <circle cx="0" cy="0" r="13.5" fill="none" stroke="#ffffff" stroke-width="2.8" />
+      <path d="M -6 0 L -1.5 4.5 L 6.5 -4" fill="none" stroke="#ffffff" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <!-- Button Text -->
+    <text x="70" y="43" class="btn-label">Client Success Stories</text>
+  </g>
+</svg>

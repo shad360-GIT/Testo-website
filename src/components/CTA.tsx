@@ -51,12 +51,12 @@ export default function CTA() {
             {/* Start Project CTA */}
             <button
               onClick={() => handleScrollToContact('launch a brand new digital experience')}
-              className="w-full sm:w-auto relative inline-flex items-center justify-center px-8 py-4 rounded-xl overflow-hidden font-display font-semibold tracking-wide text-white group focus:outline-none cursor-pointer"
+              className="w-full sm:w-auto relative inline-flex items-center justify-center px-8 py-4 rounded-xl overflow-hidden font-display font-semibold tracking-wide text-[#101010] group focus:outline-none cursor-pointer"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-xl transition-transform duration-500 group-hover:scale-105" />
-              <span className="relative z-10 flex items-center justify-center space-x-2">
-                <span>Start Project</span>
-                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+              <span className="relative z-10 flex items-center justify-center space-x-2 text-[#101010]">
+                <span className="text-[#101010]">Start Project</span>
+                <ArrowUpRight className="w-5 h-5 text-[#101010] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
               </span>
             </button>
 

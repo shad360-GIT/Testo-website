@@ -52,10 +52,10 @@ export default function Portfolio() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 ${
+                className={`px-5 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 cursor-pointer border ${
                   activeCategory === category
-                    ? 'bg-gradient-to-r from-brand-cyan to-brand-purple text-white shadow-lg shadow-brand-cyan/20 border-transparent'
-                    : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                    ? 'bg-gradient-to-r from-brand-cyan to-brand-purple text-[#101010] font-semibold shadow-lg shadow-brand-cyan/20 border-transparent'
+                    : 'bg-white/5 text-slate-400 border-white/5 hover:bg-gradient-to-r hover:from-brand-cyan hover:to-brand-purple hover:text-[#101010] hover:font-semibold hover:shadow-lg hover:shadow-brand-cyan/20 hover:border-transparent'
                 }`}
               >
                 {category}
@@ -81,12 +81,12 @@ export default function Portfolio() {
                 }}
               >
                 {/* Image Container with Zoom effect */}
-                <div className="relative aspect-video sm:aspect-4/3 overflow-hidden rounded-t-3xl bg-slate-950 shrink-0">
+                <div className="relative aspect-video overflow-hidden rounded-t-3xl bg-slate-950 shrink-0">
                   {/* Subtle glass grid overlay */}
-                  <div className="absolute inset-0 bg-black/10 z-10 transition-opacity duration-500 group-hover:bg-black/30" />
+                  <div className="absolute inset-0 bg-black/5 z-10 transition-opacity duration-500 group-hover:bg-black/20" />
                   
                   {/* Glowing neon corner overlays */}
-                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-brand-navy/90 via-brand-navy/10 to-transparent z-10" />
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-brand-navy/40 via-transparent to-transparent z-10" />
 
                   <img
                     src={project.imageUrl}

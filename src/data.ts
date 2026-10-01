@@ -1,4 +1,7 @@
 import { Service, Project, Testimonial, Benefit, ProcessStep } from './types';
+import technamicsShowcase from './assets/images/technamics_showcase.svg';
+import shorphicShowcase from './assets/images/shorphic_ecommerce_showcase_1790824893314.jpg';
+import vortexApparelShowcase from './assets/images/vortex_apparel_showcase.svg';
 
 export const HERO_ASSET = '/src/assets/images/hero_abstract_glass_1783974567137.jpg';
 export const WORKSPACE_ASSET = '/src/assets/images/agency_creative_space_1783974579948.jpg';
@@ -57,11 +60,11 @@ export const SERVICES: Service[] = [
 export const PROJECTS: Project[] = [
   {
     id: 'nebula',
-    title: 'Nebula Protocol',
-    category: 'Web3 & Fintech',
-    imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=1200&auto=format&fit=crop',
+    title: 'Technamics',
+    category: 'Web Design',
+    imageUrl: technamicsShowcase,
     description: 'A revolutionary Web3 non-custodial decentralized trading platform leveraging low-latency order routing and premium glassmorphic UI analytics.',
-    client: 'Nebula Labs Inc.',
+    client: 'Technamics',
     date: 'March 2026',
     services: ['UX/UI Design', 'Brand Identity', 'Frontend Engineering'],
     results: ['+240% Active User Growth', '$1.2B Total Volume Transacted', 'Featured on TechCrunch'],
@@ -72,7 +75,7 @@ export const PROJECTS: Project[] = [
   {
     id: 'aether',
     title: 'Aether AI Workspace',
-    category: 'SaaS & AI Integration',
+    category: 'AI Integration',
     imageUrl: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=1200&auto=format&fit=crop',
     description: 'Next-generation AI co-working canvas that structures chaotic workspace documentation using context-aware LLM mapping and real-time multiplayer node graphs.',
     client: 'Aether Systems',
@@ -87,7 +90,7 @@ export const PROJECTS: Project[] = [
     id: 'vortex',
     title: 'Vortex Digital Apparel',
     category: 'Creative Campaign',
-    imageUrl: 'https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?q=80&w=1200&auto=format&fit=crop',
+    imageUrl: vortexApparelShowcase,
     description: 'A high-concept immersive digital fashion launch featuring gorgeous interactive 3D apparel customization and premium motion narratives.',
     client: 'Vortex Studio',
     date: 'January 2026',
@@ -114,9 +117,9 @@ export const PROJECTS: Project[] = [
   {
     id: 'chronos',
     title: 'Chronos WebGL Living',
-    category: '3D & Real Estate',
+    category: 'Real Estate',
     imageUrl: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop',
-    description: 'A luxurious interactive 3D architectural exploration. Tour futuristic sustainable apartments and manipulate daylighting cycles dynamically in-browser.',
+    description: 'A luxurious architectural exploration. Tour futuristic sustainable apartments and manipulate daylighting cycles dynamically in-browser.',
     client: 'Chronos Group',
     date: 'June 2026',
     services: ['Web Development', 'Motion Design'],
@@ -128,8 +131,8 @@ export const PROJECTS: Project[] = [
   {
     id: 'lumina',
     title: 'Lumina AR Commerce',
-    category: 'E-Commerce & AR',
-    imageUrl: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?q=80&w=1200&auto=format&fit=crop',
+    category: 'E-Commerce',
+    imageUrl: shorphicShowcase,
     description: 'A luxury e-commerce landing page featuring instant camera-based augmented reality face-mapping to try on bespoke designer sunglasses and jewelry.',
     client: 'Lumina Atelier',
     date: 'April 2026',

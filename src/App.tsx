@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ScrollProgressBar from './components/ScrollProgressBar';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustedBy from './components/TrustedBy';
@@ -86,6 +87,7 @@ export default function App() {
       <div className="absolute top-0 inset-x-0 h-[600px] bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.04),transparent_70%)] pointer-events-none z-0" />
 
       {/* Structured Sections layout */}
+      <ScrollProgressBar />
       <Navbar />
       <Hero />
       <Services />

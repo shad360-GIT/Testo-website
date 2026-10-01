@@ -4,6 +4,49 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orphik Creative Studio</title>
+    <script>
+      (function () {
+        try {
+          var origDefineProperty = Object.defineProperty;
+          Object.defineProperty = function (obj, prop, descriptor) {
+            if (
+              (obj === window || obj === Window.prototype || obj === globalThis) &&
+              prop === 'fetch' &&
+              descriptor &&
+              descriptor.get &&
+              !descriptor.set
+            ) {
+              var getter = descriptor.get;
+              var customVal;
+              var hasCustom = false;
+              descriptor = Object.assign({}, descriptor, {
+                configurable: true,
+                get: function () {
+                  return hasCustom ? customVal : getter.call(this);
+                },
+                set: function (v) {
+                  hasCustom = true;
+                  customVal = v;
+                }
+              });
+            }
+            return origDefineProperty.call(Object, obj, prop, descriptor);
+          };
+
+          var currentFetch = typeof window.fetch === 'function' ? window.fetch.bind(window) : window.fetch;
+          origDefineProperty.call(Object, window, 'fetch', {
+            configurable: true,
+            enumerable: true,
+            get: function () {
+              return currentFetch;
+            },
+            set: function (v) {
+              currentFetch = v;
+            }
+          });
+        } catch (e) {}
+      })();
+    </script>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 20 100 100' fill='%23cbe82c'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M 60 20 A 50 50 0 1 1 59.99 20 Z M 60 44 A 26 26 0 1 0 60.01 44 Z' /%3E%3C/svg%3E" />
   </head>
   <body>

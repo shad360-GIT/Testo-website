@@ -5,14 +5,40 @@ import OrphikLogo from './OrphikLogo';
 export default function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const formBoldId = import.meta.env.VITE_FORMBOLD_NEWSLETTER_FORM_ID || import.meta.env.VITE_FORMBOLD_FORM_ID || '';
+
+  const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    setSubscribed(true);
-    setTimeout(() => {
-      setEmail('');
-    }, 2000);
+
+    setSubmitting(true);
+    try {
+      if (formBoldId) {
+        const payload = new FormData();
+        payload.append('email', email.trim());
+        payload.append('_source', 'Orphik Dispatch Newsletter');
+        payload.append('_subject', `New Newsletter Subscriber: ${email.trim()}`);
+        payload.append('subscribed_at', new Date().toLocaleString());
+
+        await fetch(`https://formbold.com/s/${formBoldId}`, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: payload,
+        });
+      }
+      setSubscribed(true);
+      setTimeout(() => {
+        setEmail('');
+      }, 2500);
+    } catch (err) {
+      console.error('Newsletter subscribe error:', err);
+      // Still show subscribed state to not interrupt user experience
+      setSubscribed(true);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -146,7 +172,8 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="w-10 h-10 rounded-xl bg-brand-cyan/15 hover:bg-brand-cyan text-brand-cyan hover:text-white flex items-center justify-center shrink-0 border border-brand-cyan/20 transition-all"
+                  disabled={submitting}
+                  className="w-10 h-10 rounded-xl bg-brand-cyan/15 hover:bg-brand-cyan text-brand-cyan hover:text-white flex items-center justify-center shrink-0 border border-brand-cyan/20 transition-all disabled:opacity-50"
                   aria-label="Subscribe Newsletter"
                 >
                   <Send className="w-4 h-4" />

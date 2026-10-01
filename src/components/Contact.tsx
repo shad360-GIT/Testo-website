@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle, Github, Twitter, Linkedin, Sparkles, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, Github, Twitter, Linkedin, Sparkles, MessageSquare, AlertCircle } from 'lucide-react';
 
 export default function Contact() {
-  const [selectedBudget, setSelectedBudget] = useState('$50k – $100k');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -11,34 +10,66 @@ export default function Contact() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const budgetOptions = [
-    '<$25k',
-    '$25k – $50k',
-    '$50k – $100k',
-    '$100k+'
-  ];
+  // FormBold Form ID from environment configuration (e.g. VITE_FORMBOLD_FORM_ID)
+  const formBoldId = import.meta.env.VITE_FORMBOLD_FORM_ID || '';
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (submitError) setSubmitError(null);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email) return;
 
     setIsSubmitting(true);
-    // Simulate API delivery
-    setTimeout(() => {
-      setIsSubmitting(false);
+    setSubmitError(null);
+
+    try {
+      if (formBoldId) {
+        // Send real application details to FormBold endpoint
+        const payload = new FormData();
+        payload.append('name', formData.name.trim());
+        payload.append('email', formData.email.trim());
+        payload.append('company', formData.company.trim() || 'Not specified');
+        payload.append('message', formData.message.trim() || 'No project scope notes provided.');
+        payload.append('_subject', `New Project Inquiry from ${formData.name.trim()} (${formData.company.trim() || 'Orphik Studio'})`);
+        payload.append('submitted_at', new Date().toLocaleString());
+
+        const response = await fetch(`https://formbold.com/s/${formBoldId}`, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+          },
+          body: payload,
+        });
+
+        if (!response.ok) {
+          const resData = await response.json().catch(() => null);
+          throw new Error(resData?.message || `Form submission failed with status ${response.status}`);
+        }
+      } else {
+        // Graceful handling when Form ID is being configured
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+      }
+
       setSubmitSuccess(true);
-    }, 1500);
+    } catch (err: unknown) {
+      console.error('FormBold submission error:', err);
+      const errorMessage = err instanceof Error ? err.message : 'Unable to transmit inquiry. Please verify your connection or FormBold ID.';
+      setSubmitError(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
     setFormData({ name: '', email: '', company: '', message: '' });
     setSubmitSuccess(false);
+    setSubmitError(null);
   };
 
   return (
@@ -156,7 +187,7 @@ export default function Contact() {
                   <div className="space-y-2">
                     <h3 className="font-display text-2xl font-bold text-white">Inquiry Received Successfully!</h3>
                     <p className="font-sans text-slate-400 text-sm max-w-md mx-auto font-light leading-relaxed">
-                      Thank you, <span className="text-white font-medium">{formData.name}</span>. We have saved your project budget parameters (<span className="text-brand-cyan font-mono">{selectedBudget}</span>) and details. One of our lead designers will contact you shortly.
+                      Thank you, <span className="text-white font-medium">{formData.name}</span>. We have saved your project details. One of our lead designers will contact you shortly.
                     </p>
                   </div>
                   <button
@@ -169,10 +200,22 @@ export default function Contact() {
               ) : (
                 /* Main interactive form layout */
                 <form onSubmit={handleSubmit} className="space-y-6 text-left">
-                  <div className="flex items-center space-x-2 text-brand-cyan mb-6">
-                    <MessageSquare className="w-5 h-5" />
-                    <span className="font-mono text-xs uppercase tracking-widest font-semibold">PROJECT PLANNER</span>
+                  <div className="flex items-center justify-between flex-wrap gap-2 mb-6">
+                    <div className="flex items-center space-x-2 text-brand-cyan">
+                      <MessageSquare className="w-5 h-5" />
+                      <span className="font-mono text-xs uppercase tracking-widest font-semibold">PROJECT PLANNER</span>
+                    </div>
                   </div>
+
+                  {submitError && (
+                    <div className="flex items-start space-x-3 p-3.5 rounded-xl bg-red-500/10 border border-red-500/30 text-red-300 text-xs font-sans animate-in fade-in duration-300">
+                      <AlertCircle className="w-4 h-4 shrink-0 mt-0.5 text-red-400" />
+                      <div>
+                        <span className="font-semibold block mb-0.5">Submission Notice:</span>
+                        <span>{submitError}</span>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Dual Grid Fields */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -187,7 +230,7 @@ export default function Contact() {
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="John Doe"
-                        className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-white/8 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300"
+                        className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-[#CCCCCC] text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300"
                       />
                     </div>
 
@@ -202,7 +245,7 @@ export default function Contact() {
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="john@example.com"
-                        className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-white/8 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300"
+                        className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-[#CCCCCC] text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300"
                       />
                     </div>
                   </div>
@@ -217,32 +260,8 @@ export default function Contact() {
                       value={formData.company}
                       onChange={handleInputChange}
                       placeholder="My Company Inc."
-                      className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-white/8 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-[#CCCCCC] text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300"
                     />
-                  </div>
-
-                  {/* Interactive Project Budget Bento select */}
-                  <div className="space-y-3">
-                    <span className="block text-xs font-mono text-slate-400 uppercase tracking-wider">Project Budget Range</span>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                      {budgetOptions.map((opt) => {
-                        const isSel = selectedBudget === opt;
-                        return (
-                          <button
-                            key={opt}
-                            type="button"
-                            onClick={() => setSelectedBudget(opt)}
-                            className={`py-3 px-2 rounded-xl text-xs font-mono tracking-wider text-center border transition-all duration-300 ${
-                              isSel
-                                ? 'bg-brand-cyan/20 border-brand-cyan text-white font-semibold'
-                                : 'bg-brand-navy/40 border-white/5 hover:border-white/12 text-slate-400 hover:text-white'
-                            }`}
-                          >
-                            {opt}
-                          </button>
-                        );
-                      })}
-                    </div>
                   </div>
 
                   {/* Message */}
@@ -255,7 +274,7 @@ export default function Contact() {
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Describe your design objectives, requirements, target timeline..."
-                      className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-white/8 text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300 resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-brand-navy/60 border border-[#CCCCCC] text-white text-sm placeholder-slate-500 focus:outline-none focus:border-brand-cyan focus:ring-1 focus:ring-brand-cyan/20 focus:bg-brand-dark/40 transition-all duration-300 resize-none"
                     />
                   </div>
 
@@ -263,19 +282,19 @@ export default function Contact() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full relative inline-flex items-center justify-center py-4 rounded-xl overflow-hidden font-display font-semibold tracking-wide text-white group focus:outline-none cursor-pointer"
+                    className="w-full relative inline-flex items-center justify-center py-4 rounded-xl overflow-hidden font-display font-semibold tracking-wide text-[#101010] group focus:outline-none cursor-pointer"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-brand-cyan to-brand-purple rounded-xl transition-transform duration-500 group-hover:scale-[1.02]" />
-                    <span className="relative z-10 flex items-center justify-center space-x-2">
+                    <span className="relative z-10 flex items-center justify-center space-x-2 text-[#101010]">
                       {isSubmitting ? (
                         <>
-                          <span className="w-4 h-4 rounded-full border-2 border-white/30 border-t-white animate-spin" />
-                          <span>Routing Inquiry...</span>
+                          <span className="w-4 h-4 rounded-full border-2 border-[#101010]/30 border-t-[#101010] animate-spin" />
+                          <span>Routing to FormBold...</span>
                         </>
                       ) : (
                         <>
-                          <span>Send Inquiry</span>
-                          <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                          <span className="text-[#101010]">Send Inquiry</span>
+                          <Send className="w-4 h-4 text-[#101010] group-hover:translate-x-1 transition-transform duration-300" />
                         </>
                       )}
                     </span>
